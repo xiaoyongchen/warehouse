@@ -1,0 +1,16 @@
+{
+  "name": "my-blog",
+  "version": "1.0.0",
+  "description": "vue-press 创建的博客",
+  "main": "index.js",
+  "repository": "1538627809@qq.com",
+  "author": "xiaoyong.chen",
+  "license": "MIT",
+  "scripts": {
+      "docs:dev": "vuepress dev docs",
+      "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.49"
+  }
+}
