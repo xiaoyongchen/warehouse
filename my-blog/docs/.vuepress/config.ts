@@ -16,7 +16,8 @@ export default defineUserConfig({
   },
   theme: defaultTheme({
     logo: '/images/hero.png',
-    repo: 'vuepress/vuepress-next',
+    // git地址
+    // repo: 'https://github.com/xiaoyongchen/warehouse/',
     docsDir: 'docs',
     locales: {
       '/en/': {

@@ -20,6 +20,20 @@ export const sidebarZh: SidebarConfig = {
           ]
         },
         {
+          text: 'git',
+          collapsible: true,
+          children: [
+            {
+              text: 'git常用指令',
+              link: '/zh/blog/git/command.md',
+            },
+            {
+              text: '常见问题',
+              link: '/zh/blog/git/QA.md'
+            }
+          ]
+        },
+        {
           text: 'react',
           link: '/zh/blog/react/index.md',
         },
@@ -31,6 +45,10 @@ export const sidebarZh: SidebarConfig = {
           text: 'tool',
           collapsible: true,
           children: [
+            {
+              text: '新电脑配置',
+              link: '/zh/blog/tool/新电脑配置.md',
+            },
             {
               text: '通用工具',
               link: '/zh/blog/tool/common.util.md',
@@ -75,7 +93,7 @@ export const sidebarZh: SidebarConfig = {
         },
         {
           text: 'vue',
-          link: '/zh/blog/vue/index.md',
+          link: '/zh/blog/vue/修饰符.md',
         },
       ],
     },
