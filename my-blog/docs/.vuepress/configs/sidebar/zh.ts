@@ -93,7 +93,33 @@ export const sidebarZh: SidebarConfig = {
         },
         {
           text: 'vue',
-          link: '/zh/blog/vue/修饰符.md',
+          collapsible: true,
+          children: [
+            {
+              text: '修饰符',
+              link: '/zh/blog/vue/修饰符.md',
+            }
+          ],
+        },
+        {
+          text: 'newwork',
+          collapsible: true,
+          children: [
+            {
+              text: '常见问题',
+              link: '/zh/blog/newwork/常见问题.md',
+            }
+          ],
+        },
+        {
+          text: 'article',
+          collapsible: true,
+          children: [
+            {
+              text: '感悟',
+              link: '/zh/blog/article/感悟.md',
+            },
+          ],
         },
       ],
     },
