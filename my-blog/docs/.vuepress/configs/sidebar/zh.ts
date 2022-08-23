@@ -102,12 +102,12 @@ export const sidebarZh: SidebarConfig = {
           ],
         },
         {
-          text: 'newwork',
+          text: 'network',
           collapsible: true,
           children: [
             {
               text: '常见问题',
-              link: '/zh/blog/newwork/常见问题.md',
+              link: '/zh/blog/network/常见问题.md',
             }
           ],
         },
@@ -118,6 +118,16 @@ export const sidebarZh: SidebarConfig = {
             {
               text: '感悟',
               link: '/zh/blog/article/感悟.md',
+            },
+          ],
+        },
+        {
+          text: 'android',
+          collapsible: true,
+          children: [
+            {
+              text: '常见问题',
+              link: '/zh/blog/android/常见问题.md',
             },
           ],
         },
