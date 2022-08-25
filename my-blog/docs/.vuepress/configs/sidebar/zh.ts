@@ -98,6 +98,10 @@ export const sidebarZh: SidebarConfig = {
             {
               text: '修饰符',
               link: '/zh/blog/vue/修饰符.md',
+            },
+            {
+              text: '技巧',
+              link: '/zh/blog/vue/index.md',
             }
           ],
         },

@@ -117,8 +117,13 @@
     type Parameters<T extends (...arg: any) => any> =  T extends (...arg: any) => infer R ? R : never;
 
   ```
-- tips: type Ins<T extends abstract new (...arg: any) => any > = T extends abstract new (...arg: any) => infer R ? R : any;
-- 只适用 abstract new (...arg: any) => any
+:::tip
+  type Ins<T extends abstract new (...arg: any) => any > = T extends abstract new (...arg: any) => infer R ? R : any;
+  
+  * **只适用 abstract new (...arg: any) => any**
+
+  * **对于普通的对象直接使用typeof**
+:::
 
 ## ThisType => 给this实例添加类型
 
@@ -150,8 +155,43 @@
     obj.y = 20;
     obj.moveBy(5, 5);
   ```
-- tips: type Ins<T extends abstract new (...arg: any) => any > = T extends abstract new (...arg: any) => infer R ? R : any;
-- 只适用 abstract new (...arg: any) => any
+:::tip
+  type Ins<T extends abstract new (...arg: any) => any > = T extends abstract new (...arg: any) => infer R ? R : any;
+
+  * **只适用 abstract new (...arg: any) => any**
+:::
+
+## ThisParameterType
+
+  ```typescript
+  function toHex(this: Number) {
+    return this.toString(16);
+  }
+
+  function numberToString(n: ThisParameterType<typeof toHex>) {
+    return toHex.apply(n);
+  }
+  ```
+:::tip
+  从type中提取this参数类型
+  **toHex函数参数只能用this**
+:::
+
+## OmitThisParameter
+
+  ```typescript
+  function toHex(this: Number) {
+    return this.toString(16);
+  }
+
+  const fiveToHex: OmitThisParameter<typeof toHex> = toHex.bind(5);
+
+  console.log(fiveToHex());
+  ```
+:::tip
+  从type中移除this参数类型
+  **toHex函数参数只能用this**
+:::
 
 
 ## Lowercase 转小写
