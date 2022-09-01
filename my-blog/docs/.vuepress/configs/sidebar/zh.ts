@@ -135,6 +135,34 @@ export const sidebarZh: SidebarConfig = {
             },
           ],
         },
+        {
+          text: 'js',
+          collapsible: true,
+          children: [
+            {
+              text: '基础',
+              link: '/zh/blog/js/base.md',
+            },
+            {
+              text: '高级',
+              link: '/zh/blog/js/advanced.md',
+            },
+            {
+              text: '原型链',
+              link: '/zh/blog/js/原型链.md'
+            }
+          ],
+        },
+        {
+          text: 'date',
+          collapsible: true,
+          children: [
+            {
+              text: 'QA',
+              link: '/zh/blog/date/QA.md',
+            }
+          ],
+        },
       ],
     },
   ]
