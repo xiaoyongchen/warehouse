@@ -150,7 +150,15 @@ export const sidebarZh: SidebarConfig = {
             {
               text: '原型链',
               link: '/zh/blog/js/原型链.md'
-            }
+            },
+            {
+              text: '代码规范',
+              link: '/zh/blog/js/代码规范.md',
+            },
+            {
+              text: 'QA',
+              link: '/zh/blog/js/QA.md',
+            },
           ],
         },
         {

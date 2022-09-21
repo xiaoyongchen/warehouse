@@ -54,3 +54,28 @@ export function desensitizationWithMobile(val, position = 'center') {
   return val;
 }
 ```
+
+## 设置tree
+
+```javascript
+    const getTabelList = () => {
+      if (!state.treeList?.length) {
+        return []
+      }
+      const loop = (it, prop = { children: 'children', label: 'label' }) => {
+        // 有值
+        it.label = it[prop.label]
+        if (it[prop.children]?.length) {
+          it.children = it[prop.children]
+          const children = it.children?.map(childrenIt => {
+            return loop(childrenIt, { children: 'childrenTagList', label: 'tagNameCn' })
+          })
+          it.children = children
+        }
+        return it
+      }
+      const list = state.treeList.map(it => loop(it, { children: 'childrenTagList', label: 'tagNameCn' }))
+      return list
+    }
+```
+

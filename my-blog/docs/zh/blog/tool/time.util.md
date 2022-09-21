@@ -78,3 +78,71 @@ export function getNextMonths(isZh: boolean, num = 11): ReturnDateType[] {
 }
 
 ```
+
+## 获取最近一年日期
+
+```javascript
+  export function getNextMonths(
+    isZh: boolean,
+    currentDate: Date | string = new Date(),
+    replaceFirstItem = false,
+    ArrayLength = 12,
+    format = 'YYYY-MM-DD',
+  ): ReturnDateType[] {
+    if (ArrayLength < 1) {
+      return [];
+    }
+
+    const monthNameObject = {
+      '01': isZh ? '1月' : 'Jan',
+      '02': isZh ? '2月' : 'Feb',
+      '03': isZh ? '3月' : 'Mar',
+      '04': isZh ? '4月' : 'Apr',
+      '05': isZh ? '5月' : 'Mar',
+      '06': isZh ? '6月' : 'Jun',
+      '07': isZh ? '7月' : 'July',
+      '08': isZh ? '8月' : 'Aug',
+      '09': isZh ? '9月' : 'Sep',
+      '10': isZh ? '10月' : 'Oct',
+      '11': isZh ? '11月' : 'Nov',
+      '12': isZh ? '12月' : 'Dec',
+    };
+
+    const dateArr = [];
+    const currentDateDay = dayjs(currentDate).startOf('day');
+    const today = dayjs().startOf('day');
+    const isBefore = currentDateDay.isBefore(today);
+    const replaceCurrentDate = isBefore && replaceFirstItem ? new Date() : currentDate;
+    let time: any = new Date(replaceCurrentDate);
+    for (let i = 0; i < ArrayLength; i++) {
+      // 计算单前时间
+      const nowYear = time.getFullYear();
+      const nowMonth = time.getMonth();
+      const firstDay = new Date(nowYear, nowMonth, 1); // 本月开始时间
+      const lastDay = new Date(nowYear, nowMonth + 1, 0); // 本月结束时间
+      let startDate = dayjs(firstDay).format(format);
+      const month = dayjs(firstDay).format('MM');
+      const monthName = monthNameObject[month as keyof typeof monthNameObject];
+      const endDate = dayjs(lastDay).format(format);
+      startDate =  replaceFirstItem && i === 0 ? dayjs(new Date(replaceCurrentDate)).format(format) : startDate,
+      // 下个月变量
+      // 使用一个月的开头的第一天也可以。
+      // setMonth不能使用单前时间
+      
+      time = new Date(dayjs(startDate).add(1, 'month').valueOf());
+      dateArr.push({
+        endDate,
+        monthName,
+        year: nowYear,
+        startDate,
+      });
+    }
+    
+    return dateArr;
+  }
+
+```
+
+:::tip
+  这里有个bug： **setMonth不能使用单前时间的bug**
+:::
