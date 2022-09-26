@@ -79,3 +79,45 @@ export function desensitizationWithMobile(val, position = 'center') {
     }
 ```
 
+## 下载网络图片
+
+```javascript
+      const downloadPicture = async (url = '') => {
+        if (url) {
+          try {
+            const base64 = await getUrlBase64(url)
+            const link = document.createElement('a')
+            link.href = base64
+            link.download = 'qrCode.png'
+            link.click()
+          } catch (error) {
+            console.log(error)
+          }
+        }
+      }
+      const getUrlBase64 = (url) => {
+        return new Promise(resolve => {
+          let canvas = document.createElement('canvas')
+          const ctx = canvas.getContext('2d')
+          const img = new Image()
+          img.crossOrigin = 'Anonymous' // 允许跨域
+          img.src = url
+          img.onload = function () {
+            canvas.height = 240
+            canvas.width = 240
+            ctx.drawImage(img, 0, 0, 240, 240)
+            const dataURL = canvas.toDataURL('image/png')
+            canvas = null
+            resolve(dataURL)
+          }
+        })
+      }
+
+```
+
+### 打开网络图片
+
+```javascript
+  window.location.href = url;
+```
+
