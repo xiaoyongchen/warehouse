@@ -29,3 +29,35 @@
   [3, 5, 9, 10, 8, 1, -11].sort(() => 0);
   
 :::
+
+### hasOwnProperty 使用注意事项
+
+* 直接使用hasOwnProperty的缺陷
+
+  ```bash
+    const bar = {
+      hasOwnProperty: () => false,
+      bar: 'bar'
+    }
+    # 直接使用bar.hasOwnProperty('bar') 永远返回false
+    # 正确用户如下
+    {}.hasOwnProperty.call(bar, 'bar'); 
+    # bar
+  ```
+* 使用for in 
+  ```bash
+    Object.prototype.bar = 1;
+    var foo = { index: 1 };
+    for(const i in foo ) {
+      console.log(i); 
+      # error
+    }
+    # bar index 
+    # 正确的处理
+    for(const i in foo) {
+      if(foo.hasOwnProperty(i)) {
+        console.log(i);
+      }
+    }
+    # index ok
+  ```
