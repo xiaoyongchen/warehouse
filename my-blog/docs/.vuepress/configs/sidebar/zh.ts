@@ -123,6 +123,14 @@ export const sidebarZh: SidebarConfig = {
               text: '感悟',
               link: '/zh/blog/article/感悟.md',
             },
+            {
+              text: '罗翔',
+              link: '/zh/blog/article/罗翔.md',
+            },
+            {
+              text: '董宇飞',
+              link: '/zh/blog/article/董宇飞.md',
+            },
           ],
         },
         {
