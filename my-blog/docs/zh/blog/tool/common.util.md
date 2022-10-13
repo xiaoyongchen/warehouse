@@ -121,3 +121,41 @@ export function desensitizationWithMobile(val, position = 'center') {
   window.location.href = url;
 ```
 
+### 获取随机数字加字母组合数
+
+```javascript
+  const getRandomWord = (min = 2, max = 36, randomLengthFlag = false, regExp = /^(?=.*\d)(?=.*[a-zA-Z])[\da-zA-Z~!@#$%^&*]{2,36}$/) => {
+      let result = ''
+      let range = min
+      const arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+      // 随机长度
+      if (randomLengthFlag) {
+        range = Math.round(Math.random() * (max - min)) + min
+      }
+      const loop = () => {
+        result = ''
+        for (let i = 0; i < range; i++) {
+          const pos = Math.round(Math.random() * (arr.length - 1))
+          result += arr[pos]
+        }
+
+        if (!RegExp) {
+          return
+        }
+
+        // 正则匹配
+        if (regExp && !!result.match(regExp)) {
+          return
+        }
+
+        loop()
+      }
+
+      loop()
+
+      return result
+    }
+
+```
+
