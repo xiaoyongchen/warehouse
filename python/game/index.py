@@ -4,18 +4,17 @@ import pygame
 from settings import Setting
 from ship import Ship
 import game_function as gf
-from bullet import Bullet
 from pygame.sprite import Group
-from alien import Alien
 
 def run_game():
   pygame.init()
   ai_settings = Setting()
-  screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_width))
+  screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
   ship = Ship(ai_settings,screen)
   bullets = Group()
 
-  alien = Alien(ai_settings, screen)
+  aliens = Group()
+  gf.create_fleet(ai_settings, screen, ship, aliens)
 
 
   while True:
@@ -23,6 +22,6 @@ def run_game():
     ship.update()
     # 删除消失的子弹
     gf.update_bullets(bullets)
-    gf.update_screen(ai_settings, screen, ship, bullets, alien)
+    gf.update_screen(ai_settings, screen, ship, bullets, aliens)
     
 run_game()
