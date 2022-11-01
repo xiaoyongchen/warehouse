@@ -8,7 +8,7 @@ def run_game():
   pygame.init()
   ai_setting = Setting()
   screen = pygame.display.set_mode((ai_setting.screen_width, ai_setting.screen_width))
-  ship = Ship(screen)
+  ship = Ship(ai_setting,screen)
 
   while True:
     gf.check_events(ship)
