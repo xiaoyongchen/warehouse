@@ -68,12 +68,51 @@ def create_alien(ai_settings, screen, aliens, alien_number, row_number):
     alien.rect.x = alien.x
     aliens.add(alien)
 
-def update_bullets(bullets):
+def check_fleet_edges(ai_settings, aliens):
+  for alien in aliens.sprites():
+    if alien.check_edges():
+      change_fleet_direction(ai_settings, aliens)
+      break
+
+def change_fleet_direction(ai_settings, aliens):
+  """有个触壁整个下移，并改变方向"""
+  for alien in aliens.sprites():
+    alien.rect.y += ai_settings.fleet_drop_speed
+  # 取反
+  ai_settings.fleet_direction *= -1
+
+# 更新外星人
+def update_aliens(ai_settings,ship, aliens):
+  # 对编组设置update，表示每个alien设置update
+  check_fleet_edges(ai_settings, aliens)
+  aliens.update()
+
+  # 检测外星人是否碰撞飞机
+  check_aliens_ship_collideany(ship, aliens)
+
+def check_aliens_ship_collideany(ship, aliens):
+  if pygame.sprite.spritecollideany(ship, aliens):
+    print('game over!')
+
+def update_bullets(ai_settings, screen, ship,aliens, bullets):
   bullets.update()
   for bullet in bullets.copy():
       if bullet.rect.bottom <= 0:
         bullets.remove(bullet)
+  
+  check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
 
+
+# 校验是否碰撞，是需要删除子弹和重新创建外星人
+def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+  collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+  # 外星人为空，重新创建，外星人，清空子弹
+  if len(aliens) == 0:
+    bullets.empty()
+    create_fleet(ai_settings, screen, ship, aliens)
+
+
+# 更新屏幕
 def update_screen(ai_setting, screen, ship, bullets, aliens):
   screen.fill(ai_setting.bg_color)
   ship.blitme()
