@@ -6,6 +6,7 @@ from ship import Ship
 import game_function as gf
 from pygame.sprite import Group
 from game_status import GameStatus
+from button import Button
 
 def run_game():
   pygame.init()
@@ -16,6 +17,7 @@ def run_game():
   status = GameStatus(ai_settings)
 
   aliens = Group()
+  play_button = Button(ai_settings, screen, 'Play')
   gf.create_fleet(ai_settings, screen, ship, aliens)
 
 
@@ -26,6 +28,6 @@ def run_game():
       # 删除消失的子弹
       gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
       gf.update_aliens(ai_settings, status, screen, ship, aliens, bullets)
-    gf.update_screen(ai_settings, screen, ship, bullets, aliens)
+    gf.update_screen(ai_settings, screen, status, ship, bullets, aliens, play_button)
     
 run_game()

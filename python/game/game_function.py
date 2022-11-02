@@ -30,11 +30,6 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
     ship.moving_right = False
     ship.moving_left = True
 
-def fire_bullet(ai_settings, screen, ship, bullets):
-  if len(bullets) < ai_settings.bullets_allowed:
-    current_bullet = Bullet(ai_settings, screen, ship)
-    bullets.add(current_bullet)
-
 def check_keyup_events(event, ship):
   if event.key == pygame.K_RIGHT:
     ship.moving_right = False
@@ -42,7 +37,13 @@ def check_keyup_events(event, ship):
     #向左移动飞船
     ship.moving_left = False
 
+# 开炮
+def fire_bullet(ai_settings, screen, ship, bullets):
+  if len(bullets) < ai_settings.bullets_allowed:
+    current_bullet = Bullet(ai_settings, screen, ship)
+    bullets.add(current_bullet)
 
+# 创建外星人群
 def create_fleet(ai_settings, screen, ship, aliens):
   alien = Alien(ai_settings, screen)
   alien_width = alien.rect.width
@@ -141,12 +142,15 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
 
 
 # 更新屏幕
-def update_screen(ai_setting, screen, ship, bullets, aliens):
+def update_screen(ai_setting, screen, status, ship, bullets, aliens, play_button):
   screen.fill(ai_setting.bg_color)
   ship.blitme()
   aliens.draw(screen)
 
   for bullet in bullets:
     bullet.draw_bullet()
+
+  if not status.game_active:
+    play_button.draw_button()
 
   pygame.display.flip()
