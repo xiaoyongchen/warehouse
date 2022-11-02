@@ -4,10 +4,11 @@ class Setting():
     self.screen_width = 375
     self.screen_height = 667
     self.bg_color = (230, 230, 230)
+    self.bg_transparent = (0,0,0)
 
     # 子弹配置
-    self.bullet_width = 3
-    self.bullet_height = 15
+    self.bullet_width = 2
+    self.bullet_height = 10
     self.bullet_speed_factor = 3
     self.bullet_color = (60, 60, 60)
     # 子弹限制

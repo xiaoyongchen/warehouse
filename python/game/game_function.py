@@ -140,7 +140,6 @@ def ship_hit(ai_settings, status, screen, ship, scoreboard, aliens,  bullets):
   # 飞船数量减1
   if status.ships_left > 0:
     status.ships_left -= 1
-    print(status.ships_left)
     scoreboard.prep_ships()
     sleep(0.5)
   else:
