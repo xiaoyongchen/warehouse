@@ -27,23 +27,23 @@ def check_play_button(ai_settings, screen, ship, status, scoreboard, play_button
   if button_click and not status.game_active:
     reset_game_status(ai_settings, screen, ship, status,scoreboard, aliens, bullets)
 
-def reset_game_status(ai_settings, screen, ship, status, scoreboard, aliens, bullets):
+def reset_game_status(ai_settings, screen, ship, status, scoreboard, aliens, bullets, reset = True):
+  if reset:
+    # 初始化速度配置
+    ai_settings.initialize_dynamic_settings()
+    # 隐藏光标
+    pygame.mouse.set_visible(False)
+    # 重置游戏统计信息
+    status.reset_status()
+    status.game_active = True
+    
+    # 重置计分牌 & 等级
+    scoreboard.prep_score()
+    scoreboard.prep_high_score()
+    scoreboard.prep_level()
+    scoreboard.prep_ships()
 
-  # 初始化速度配置
-  ai_settings.initialize_dynamic_settings()
-  # 隐藏光标
-  pygame.mouse.set_visible(False)
-  # 重置游戏统计信息
-  status.reset_status()
-  status.game_active = True
-  
-  # 重置计分牌 & 等级
-  scoreboard.prep_score()
-  scoreboard.prep_high_score()
-  scoreboard.prep_level()
-  scoreboard.prep_ships()
-
-  # 清空外星人和子弹列表
+  # 清空外星人和子弹列表, 公共的清除
   aliens.empty()
   bullets.empty()
   
@@ -138,15 +138,16 @@ def check_aliens_bottom(ai_settings, status, screen,  ship, scoreboard, aliens, 
 
 def ship_hit(ai_settings, status, screen, ship, scoreboard, aliens,  bullets):
   # 飞船数量减1
-  status.ships_left -= 1
   if status.ships_left > 0:
     status.ships_left -= 1
+    print(status.ships_left)
+    scoreboard.prep_ships()
     sleep(0.5)
   else:
     status.game_active = False
     pygame.mouse.set_visible(True)
 
-  reset_game_status(ai_settings, screen, ship, status, scoreboard,aliens, bullets)
+  reset_game_status(ai_settings, screen, ship, status, scoreboard,aliens, bullets, False)
   # 暂停
   sleep(1)
 
