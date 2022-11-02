@@ -1,6 +1,8 @@
 import pygame
-class Ship():
+from pygame.sprite import Sprite
+class Ship(Sprite):
   def __init__(self, ai_setting, screen):
+    super(Ship, self).__init__()
     """初始位置"""
     self.screen = screen
 
