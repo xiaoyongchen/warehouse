@@ -5,10 +5,13 @@ from alien import Alien
 from time import sleep
 
 
-def check_events(ai_settings, screen, ship, bullets):
+def check_events(ai_settings, status, screen, ship, aliens, bullets, play_button):
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       sys.exit()
+    elif event.type == pygame.MOUSEBUTTONDOWN:
+      mouse_x, mouse_y = pygame.mouse.get_pos()
+      check_play_button(ai_settings, screen, ship, status, play_button, aliens, bullets, mouse_x, mouse_y)
     elif event.type == pygame.KEYDOWN:
       if event.key == pygame.K_q:
         sys.exit()
@@ -17,7 +20,27 @@ def check_events(ai_settings, screen, ship, bullets):
     elif event.type == pygame.KEYUP:
       check_keyup_events(event, ship)
   
-    
+# 检验是否点击了开始按钮
+def check_play_button(ai_settings, screen, ship, status, play_button, aliens, bullets, mouse_x, mouse_y,):
+  button_click = play_button.rect.collidepoint(mouse_x, mouse_y)
+  # 防止玩家点击按钮的位置强制开机
+  if button_click and not status.game_active:
+    # 隐藏光标
+    pygame.mouse.set_visible(False)
+    # 重置游戏统计信息
+    status.reset_status()
+    status.game_active = True
+
+    reset_game_status(ai_settings, screen, ship, aliens, bullets)
+
+def reset_game_status(ai_settings,screen, ship, aliens, bullets):
+  # 清空外星人和子弹列表
+  aliens.empty()
+  bullets.empty()
+
+  create_fleet(ai_settings, screen, ship, aliens)
+  ship.center_ship()
+  
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
   if event.key == pygame.K_SPACE:
     fire_bullet(ai_settings, screen,ship, bullets)
@@ -112,14 +135,9 @@ def ship_hit(ai_settings, status, screen, ship, aliens,  bullets):
     sleep(0.5)
   else:
     status.game_active = False
-  # 清空外星人和子弹列表
-  aliens.empty()
-  bullets.empty()
+    pygame.mouse.set_visible(True)
 
-  # 创建新的外星人
-  create_fleet(ai_settings,screen, ship, aliens)
-  ship.center_ship()
-
+  reset_game_status(ai_settings, screen, ship, aliens, bullets)
   # 暂停
   sleep(1)
 

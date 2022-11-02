@@ -22,7 +22,7 @@ def run_game():
 
 
   while True:
-    gf.check_events(ai_settings, screen, ship, bullets)
+    gf.check_events(ai_settings, status, screen, ship, aliens, bullets, play_button)
     if status.game_active:
       ship.update()
       # 删除消失的子弹
