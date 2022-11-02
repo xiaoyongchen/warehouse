@@ -12,6 +12,10 @@ class Setting():
     self.bullet_color = (60, 60, 60)
     self.bullets_allowed = 10
 
+    # 飞船配置
+    self.ship_limit = 3
+    self.ship_speed_factor = 1.5
+
     # 外星人配置
     self.alien_speed_factor = 1
     # 碰撞到边缘向下移动多少距离
