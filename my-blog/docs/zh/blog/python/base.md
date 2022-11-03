@@ -298,3 +298,54 @@ unittest.main()
       * 查看 python3 
         * >>> import matplotlib
       * 示例画廊(http://matplotlib.org/)。
+
+  ## pygal制作可缩放的矢量图形文件
+    ### 安装
+      * mac
+        * pip3 install --user pygal
+      * window
+        * python -m pip install --user pygal
+      * 查看 python3 
+        * >>> import pygal
+
+  ## 使用api python3一般默认安装了
+
+    ### 安装
+      *  pip3 install --user requests
+
+    ```bash
+      import requests
+      url = 'https://api.github.com/search/repositories?q=language:python&sort=stars&page=1&size=1'
+      res = requests.get(url)
+      resJson = res.json()
+      print(resJson['items'][0])
+    ```
+
+    ## [爬虫]（https://foofish.net/python-crawler-html2pdf.html）
+      ### 工具下载
+        ```bash
+          # pip3 也行
+          pip install requests
+          pip install beautifulsoup4
+          pip install pdfkit
+        ```
+      ### 安装 wkhtmltopdf(https://wkhtmltopdf.org/downloads.html  )
+         Windows平台直接在 wkhtmltopdf 官网下载稳定版的进行安装，安装完成之后把该程序的执行路径加入到系统环境 $PATH 变量中，否则 pdfkit 找不到 wkhtmltopdf 就出现错误 “No wkhtmltopdf executable found”。Ubuntu 和 CentOS 可以直接用命令行进行安装
+
+         $ sudo apt-get install wkhtmltopdf  # ubuntu
+         $ sudo yum intsall wkhtmltopdf      # centos
+
+        [macos](https://wkhtmltopdf.org/downloads.html)
+        下载安装就行
+        ```bash
+          # 查看版本
+          wkhtmltopdf --version
+        ```
+
+    ### 生成依赖
+      ```bash
+        # freeze命令用于生成将当前项目的pip类库列表生成 requirements.txt 文件：
+        pip freeze > requirements.txt
+        # 安装依赖
+        pip install -r requirements.txt
+      ```
