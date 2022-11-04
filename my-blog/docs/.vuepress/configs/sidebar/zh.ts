@@ -24,10 +24,6 @@ export const sidebarZh: SidebarConfig = {
           collapsible: true,
           children: [
             {
-              text: 'git常用指令',
-              link: '/zh/blog/git/command.md',
-            },
-            {
               text: 'git指令',
               link: '/zh/blog/git/index.md',
             },

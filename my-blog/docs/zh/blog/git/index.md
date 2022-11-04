@@ -124,7 +124,6 @@
     git switch -c feature/development
   ```
   ### 推送分支
->>>>>>> main
 
   ```javascript
     git push origin feature/1.0.0
