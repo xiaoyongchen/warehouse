@@ -92,7 +92,10 @@
   ### 删除分支
 
   ```javascript
-  git remote rm origin/develop
+  // 删除本地分支
+  git branch -d feature/1.0.0
+  // 删除远程分支
+  git push origin  -d feature/1.0.0
 
   ```
 
@@ -107,22 +110,24 @@
     git checkout main
   ```
 
-  ### 创建分支
+  ### 创建|切换分支
 
   ```javascript
+    git checkout main
+    git switch main
     // 从选择的分支创建并切换到当前分支
     git branch -b feature/development
 
-    // 新api
+    // 因为git checkout -- <文件> 区别
     git switch -c feature/development
   ```
 
   ### 推送远程分支
 
     ```javascript
-    git push origin feature/development
+    git push origin feature/1.0.0
 
-    // 已经有feature
+    // 已经有feature文件夹
     git push --force origin :feature
   ```
 
