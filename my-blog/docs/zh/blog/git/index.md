@@ -63,18 +63,21 @@
 
   :::
 
+  ### 查看日志 **git log**
+  ```javascript
+    git log --pretty=oneline
+    git log origin/feature/development --pretty=oneline
+    // 查看最近几条提交 --graph 图形化
+    git log -3  --graph --pretty=oneline 
+    // 通过log查看修改的位置
+    git log -3  --pretty=oneline
+  ```
 
   ### 删除文件
 
   ```javascript
     git rm my-blog/docs/zh/blog/git/test.txt
   ```
-
-  :::tip
-  如果删除错误了
-
-  :::
-
 
  ### 查看远程分支
 
@@ -108,11 +111,6 @@
   ```javascript
     git branch
   ```
-  ### 切换分支
-
-  ```javascript
-    git checkout main
-  ```
 
   ### 创建|切换分支
 
@@ -125,7 +123,8 @@
     // 因为git checkout -- <文件> 区别
     git switch -c feature/development
   ```
-  ### 推送远程分支
+  ### 推送分支
+>>>>>>> main
 
   ```javascript
     git push origin feature/1.0.0
@@ -148,8 +147,15 @@
     git merge feature/development
   ```
 
-  ### cherry-pick
+  ### git cherry-pick
 
   ```javascript
    git cherry-pick <commitHash>
   ```
+
+  :::tip
+  **`git merge`** **`git cherry-pick`**区别
+  git merge 合并所有的提交
+  git cherry-pick 可以合并指定commit
+  共同点：都需要在当前分支进行
+  :::
