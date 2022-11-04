@@ -64,3 +64,15 @@
   :::
 
 
+  ### 删除文件
+
+  ```javascript
+    git rm my-blog/docs/zh/blog/git/test.txt
+  ```
+
+  :::tip
+  如果删除错误了
+  
+  :::
+
+
