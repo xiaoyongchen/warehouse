@@ -63,6 +63,11 @@
 
   :::
 
+  ### 查看日志 **git log**
+  ```javascript
+    git log --pretty=oneline
+    git log origin/feature/development --pretty=oneline
+  ```
 
   ### 删除文件
 
