@@ -16,15 +16,15 @@
     // 比如我想提交my-blog/docs/.vuepress/configs/sidebar/zh.ts文件 仓库需与myproject下
     // 一个文件
     git add my-blog/docs/.vuepress/configs/sidebar/zh.ts
-    git commit -m "提交测试文件"
 
     // 多个文件
     git add my-blog/docs/zh/blog/git/index.md  my-blog/docs/zh/blog/git/terminal.md 
-    git commit -m "提交2个文件"
 
     // 文件夹下的所有
     git add my-blog/docs/zh/blog/git/
-    git commit -m "提交git个文件"
+
+    // 所有的提交
+    git add .
   ```
   :::tip
     git add xxx 把文件提交到暂缓区
@@ -42,5 +42,7 @@
 
   ```javascript
     git reset --soft HEAD^ 
+
   ```
+
 
