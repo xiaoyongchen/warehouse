@@ -44,6 +44,8 @@ export default defineUserConfig({
           '看起来我们进入了错误的链接',
         ],
         backToHome: '返回首页',
+        lastUpdatedText: '最近更新',
+        contributorsText: '作者',
         // a11y
         openInNewWindow: '在新窗口打开',
         toggleColorMode: '切换颜色模式',
