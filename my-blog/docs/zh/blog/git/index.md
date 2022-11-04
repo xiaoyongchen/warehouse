@@ -25,6 +25,10 @@
 
     // 所有的提交
     git add .
+
+    // 直接提交代码到本地仓库
+    git commit --all --message "***"
+    git commit -a -m "***" 
   ```
   :::tip
     git add xxx 把文件提交到暂缓区
