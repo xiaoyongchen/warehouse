@@ -72,7 +72,46 @@
 
   :::tip
   如果删除错误了
-  
+
   :::
+
+
+ ### 查看远程分支
+
+  ```javascript
+  git remote -v
+  
+  ```
+
+  ### 关联远程分支
+
+  ```javascript
+    git remote add origin 分支链接
+
+  ```
+  ### 删除分支
+
+  ```javascript
+  git remote rm origin/develop
+
+  ```
+
+  ### 查看分支
+
+  ```javascript
+    git branch
+  ```
+  ### 切换分支
+
+  ```javascript
+    git checkout main
+  ```
+
+  ### 创建分支
+
+  ```javascript
+    // 从选择的分支创建并切换到当前分支
+    git branch -b feature/development
+  ```
 
 
