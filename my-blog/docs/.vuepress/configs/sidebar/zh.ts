@@ -28,6 +28,10 @@ export const sidebarZh: SidebarConfig = {
               link: '/zh/blog/git/command.md',
             },
             {
+              text: 'git指令',
+              link: '/zh/blog/git/index.md',
+            },
+            {
               text: '常见问题',
               link: '/zh/blog/git/QA.md'
             }
