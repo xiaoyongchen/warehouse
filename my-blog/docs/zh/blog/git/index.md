@@ -112,6 +112,9 @@
   ```javascript
     // 从选择的分支创建并切换到当前分支
     git branch -b feature/development
+
+    // 新api
+    git switch -c feature/development
   ```
 
   ### 推送远程分支
