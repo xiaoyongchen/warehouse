@@ -31,10 +31,13 @@
     git commit -a -m "***" 
   ```
   :::tip
-    git add xxx 把文件提交到暂缓区
-    git commit -m "提交文件"  命令将暂存区内容添加到本地仓库中。并且本地仓库中有哈希值记录
-    git status -s 可以查看提交的文件
-    git commit -a —m "直接提交到本地仓库"
+  git add xxx 把文件提交到暂缓区
+
+  git commit -m "提交文件"  命令将暂存区内容添加到本地仓库中。并且本地仓库中有哈希值记录
+
+  git status -s 可以查看提交的文件
+
+  git commit -a —m "直接提交到本地仓库"
   :::
 
   ### 取消代码暂缓区代码
@@ -45,8 +48,19 @@
  ### 取消本地仓库到暂缓区
 
   ```javascript
-    git reset --soft HEAD^ 
-
+    // 2次HEAD^^ HEAD~20 
+    git reset --soft HEAD^
+    git reset --hard HEAD^
+    
   ```
+
+  :::tip
+  **`--hard`**, **`--soft`** 区别
+
+  --hard: 版本指针直接指向上一个记录位置,可以通过`git reflog --pretty=oneline` 查看版本历史
+
+  --soft: 版本指针添加一个记录是上一个提交，他的上一个版本是刚才提交的版本
+
+  :::
 
 
