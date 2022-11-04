@@ -99,6 +99,10 @@
 
   ```
 
+  :::warning
+  需要切换到其他分支才能删除
+  :::
+
   ### 查看分支
 
   ```javascript
@@ -116,15 +120,14 @@
     git checkout main
     git switch main
     // 从选择的分支创建并切换到当前分支
-    git branch -b feature/development
+    git checkout -b feature/development <=> git branch feature/development git checkout feature/development 
 
     // 因为git checkout -- <文件> 区别
     git switch -c feature/development
   ```
-
   ### 推送远程分支
 
-    ```javascript
+  ```javascript
     git push origin feature/1.0.0
 
     // 已经有feature文件夹
@@ -143,4 +146,10 @@
   ```javascript
     git checkout main
     git merge feature/development
+  ```
+
+  ### cherry-pick
+
+  ```javascript
+   git cherry-pick <commitHash>
   ```
