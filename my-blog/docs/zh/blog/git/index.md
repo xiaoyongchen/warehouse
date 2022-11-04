@@ -145,10 +145,11 @@
   ```
 
   :::tip
-    **git push origin main:main** **git push origin main** **git push origin** **git push**
+    **git push origin main:main** **git push origin main** **git push origin** **git push** **git push -u origin main**
     * 本地分支远程分支同名 git push origin main:main <=> git push origin main
     * 当前分支与远程分支存在追踪关系(远程有) git push origin main <=> git push origin
     * 当只有一个主机时候 3者等价
+    * 只有一个主机时候 git push -u origin <=> git push origin main
   :::
 
 
