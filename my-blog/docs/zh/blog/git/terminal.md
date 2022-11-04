@@ -6,4 +6,4 @@
     i686 表示系统32位的；
       uname -a 
   
-  ### 
+  ### 测试 git checkout
