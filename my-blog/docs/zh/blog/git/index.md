@@ -98,7 +98,7 @@
   // 删除本地分支
   git branch -d feature/1.0.0
   // 删除远程分支
-  git push origin  -d feature/1.0.0
+  git push origin  -d feature/1.0.0 <=>  git push origin :feature/1.0.0
 
   ```
 
@@ -136,6 +136,18 @@
   ! [remote rejected] feature/development -> feature/development (cannot lock ref 'refs/heads/feature/development': 'refs/heads/feature' exists; cannot create 'refs/heads/feature/development')
 
   因为远程已经有了，文件夹已经被lock了
+  :::
+
+  ### 推送代码到远程分支并合并 
+  格式**git push <远程主机名> <本地分支名>:<远程分支名>**
+  ```javascript
+    git push origin main
+  ```
+
+  :::tip
+    **git push origin main** **git push origin** **git push**
+    * 当前分支与远程分支存在追踪关系(远程有) git push origin main <=> git push origin
+    * 当只有一个主机时候 3者等价
   :::
 
 
