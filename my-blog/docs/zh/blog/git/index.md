@@ -129,3 +129,10 @@
   因为远程已经有了，文件夹已经被lock了
   :::
 
+
+  ### 合并代码
+
+  ```javascript
+    git checkout main
+    git merge feature/development
+  ```
