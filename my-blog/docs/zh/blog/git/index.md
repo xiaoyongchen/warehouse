@@ -114,4 +114,18 @@
     git branch -b feature/development
   ```
 
+  ### 推送远程分支
+
+    ```javascript
+    git push origin feature/development
+
+    // 已经有feature
+    git push --force origin :feature
+  ```
+
+  :::tip
+  ! [remote rejected] feature/development -> feature/development (cannot lock ref 'refs/heads/feature/development': 'refs/heads/feature' exists; cannot create 'refs/heads/feature/development')
+
+  因为远程已经有了，文件夹已经被lock了
+  :::
 
