@@ -121,6 +121,9 @@
 
     // 因为git checkout -- <文件> 区别
     git switch -c feature/development
+
+    // 从已有的远程分支切换到本地
+    git checkout -b feature/2.7.0 origin/feature/2.7.0
   ```
   ### 推送分支
 

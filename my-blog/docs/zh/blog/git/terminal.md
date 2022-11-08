@@ -6,4 +6,12 @@
     i686 表示系统32位的；
       uname -a 
   
-  ### 测试提交
+  ### 本机使用者
+
+  whoami
+
+  ### 查看ip
+  ifconfig | grep "inet"
+
+  ### whereis
+    查看nginx的目录：whereis nginx

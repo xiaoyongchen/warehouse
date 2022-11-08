@@ -38,6 +38,20 @@ export const sidebarZh: SidebarConfig = {
           link: '/zh/blog/react/index.md',
         },
         {
+          text: 'docker',
+          collapsible: true,
+          children: [
+            {
+              text: '概念',
+              link: '/zh/blog/docker/index.md',
+            },
+            {
+              text: '构建一个vue项目',
+              link: '/zh/blog/docker/publishVue.md'
+            }
+          ]
+        },
+        {
           text: 'regExp',
           link: '/zh/blog/regExp/常用正则匹配.md',
         },
