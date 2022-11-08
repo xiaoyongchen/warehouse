@@ -1,11 +1,6 @@
 ## Docker发布一个vue项目
 
 ### Docker运行一个简单的echo命令
-  * docker search nginx
-  * docker pull nginx
-  * docker images 
-  * docker save nginx >/tmp/nginx.tar.gz
-  * docker load </tmp/nginx.tar.gz
   ```bash
     # 搜索docker search [REPOSITORY[:TAG]]
       docker search nginx
@@ -13,23 +8,24 @@
       docker pull nginx
     # 查看镜像docker image ls
       docker images 
-    # 保存镜像
-      docker save nginx >/tmp/nginx.tar.gz
-    # 加载镜像
-      docker load </tmp/nginx.tar.gz
     # 删除镜像docker image rm [REPOSITORY[:TAG]] docker rmi [OPTIONS] IMAGE [IMAGE...] -f    -f: 强制删除
     # rm 删除一个或者多个容器 rmi 表示删除一个或者多个镜像
       docker rmi -f nginx
+    # 删除容器
+      docker rm [容器id] [容器id]
+    # 查看运行的容器
+      docker ps -a
     # 查看|停止｜重新开始 容器
       docker ps ｜ stop ｜ restart
-      ![image]('../../../../../.vuepress/public/images/dockerStartStop.png')
+
     # 运行一个简单的hello world。这里回pull并运行centos 
       docker run centos echo "hello world"  # hello world
   ```
 
 ### 打包运行vue项目
 
-  ```javascript
+  ```bash
+  # start
   # 创建vue项目
   cd Desktop
   vue create vue-demo
@@ -38,8 +34,9 @@
   # 拉取nginx镜像
   docker pull nginx
 
-  # 生成容器，这里用ip访问nginx的时候，就已经替换成宿主的dist下面的index.html
+  # 生成容器，这里用ip访问nginx的时候，就已经替换成宿主的dist下面的index.html，这里有个弊端，每次修改配置都要到容器中修改
   docker run -d -p 80:80 --name nginx_wms_ui -v /Users/chenxiaoyong/Desktop/资料/nginx/dist:/usr/share/nginx/html --restart=always nginx
+
 
   -d=true|false
     后台运行使用 daemon 模式, 默认值false
@@ -49,63 +46,79 @@
   --restart: always nginx 一直重启
 
   # 重启服务
-  docker ps 
+  docker start ｜ restart [容器id]
 
+  # 打开本地ip，查看是否成功,这里的80是设置的对外端口号，可以自定义
+  localhost:80 | 10.7.***.***:80
+
+  # end
+
+  ```  
+
+  ### 优化vue配置
+  `每次修改配置都要到容器中修改`使用容器的配置拷贝一份到宿主容器，之后-v 修改数据卷宿主的目录对应容器的目录
+
+  ```bash
+  # 前提背景
   # 进入容器目录
   docker exec -it 容器id /bin/bash
 
   # 进入
   cd /etc/nginx/conf.d
-  # 我们可以查看default.conf
-  # 你会发现etc/nginx下有个nginx.conf 配置文件我们查看配置发现这里有条语句是引用了上面default.conf的配置，由此可见我们以后需要配置其他项目路径就直接配置default.conf就行了。
 
-  ```  
-  :::tip
-  为什么要挂载在到docker的/usr/share/nginx/html,
-  因为每次修改都需要进入容器的内部求修改, 所以需要把配置pc 一份到宿主机目录
+  # 你会发现etc/nginx下有个nginx.conf 
+  # 配置文件我们查看配置发现这里有条语句是引用了上面default.conf的配置，
+  # 由此可见我们以后需要配置其他项目路径就直接配置default.conf就行了。
 
-  docker cp nginx_wms_ui:/etc/nginx /Users/chenxiaoyong/Desktop/资料/nginx/
-  nginx_wms_ui： 容器名称
-  /etc/nginx: 为需要复制的文件
-  /Users/chenxiaoyong/Desktop/资料/nginx/： 保存到那个目录下
+  # 操作
+  # 拷贝容器的目录到宿主指定的目录（这个目录以后会用到比较重要）
+  docker cp nginx_wms_ui:/etc/nginx /Users/chenxiaoyong/Desktop/nginx/
+    说明:
+    nginx_wms_ui： 容器名称
+    /etc/nginx: 为需要复制的文件
+    /Users/chenxiaoyong/Desktop/nginx/： 保存到那个目录下
 
-  ![image]('../../../../../.vuepress/public/images/nginxPath.png')
+  # 修改宿主目录的default.conf 
+    vi  /Users/chenxiaoyong/Desktop/nginx/conf.d/default.conf
+    :i
+    esc
+    :wq
+  
+  # 修改配置内容
 
-    * 默认监听80端口
-    * root /use/share/nginx/html 指定存放页面的文件夹
-    * /50x.html{ root /usr/share/nginx/html } 出现错误跳转到该目录页面
+  server {
+    listen       80;
+    listen  [::]:80;
+    server_name  localhost;
 
-    从图配置路径来开，我们只需要配置default.conf就行了
-    **`/etc/nginx 中有个nginx.conf => include 是指向 conf.d/default.conf.所以修改default.conf 就修改了nginx.conf`**
-  :::
+    #access_log  /var/log/nginx/host.access.log  main;
 
-  ### 优化nginx配置
-    #### 复制配置文件，为了以后多项目部署方便修改Nginx
-    ![image]('../../../../../.vuepress/public/images/nginxcopy.png')
-    :::tip
-     **`docker cp nginx_wms_ui:/etc/nginx /Users/chenxiaoyong/Desktop/资料/`**
-      nginx_wms_ui: 容器名称
-      /etc/nginx: 容器需要复制的文件
-      /Users/chenxiaoyong/Desktop/资料/: 宿主文件目录
-    :::
+    location / {
+        # 指定位置
+        root   /usr/local/vue/dist;
+        index  index.html index.htm;
+    }
 
-    #### 修改宿主机配置进入conf.d文件夹下修改default.conf
-    * :i
-    * root: /usr/local/vue/dist # 两个位置都修改
-    * esc
-    * :wq
+    #error_page  404              /404.html;
 
-    #### 删除nginx_wms_ui 容器
-      docker rm 60475a6d82ea --force ｜ docker rm 60475a6d82ea
-    #### 重启容器
-      docker run --name nginx_demo -p 5000:80 -v /Users/chenxiaoyong/Desktop/nginx/dist:/usr/local/vue/dist -v /Users/chenxiaoyong/Desktop/nginx:/etc/nginx -d nginx
-    :::tip
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        # 指定位置
+        root   /usr/local/vue/dist;
+    }
+}
 
-    ![image]('../../../../../.vuepress/public/images/fileshare.png')
-    解释：
-    –name：后面的是容器名称
-    -p:冒号前面是宿主机的对外端口，冒号后面的是容器的端口
-    -v：冒号前面的是宿主机的文件目录，冒号后面是容器的内部文件目录
-    -d:表示后端运行
-    nginx：最后面的nginx是镜像的名称
-    :::
+# 删除容器
+  docker rm [容器id]
+
+# 重启容器
+  docker run --name nginx_demo -p 5000:80 -v /Users/chenxiaoyong/Desktop/nginx/dist:/usr/local/vue/dist -v /Users/chenxiaoyong/Desktop/nginx:/etc/nginx -d nginx
+
+  解释：
+  –name：后面的是容器名称
+  -p:冒号前面是宿主机的对外端口，冒号后面的是容器的端口
+  -v：冒号前面的是宿主机的文件目录，冒号后面是容器的内部文件目录
+  -d:表示后端运行
+  nginx：最后面的nginx是镜像的名称
