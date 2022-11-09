@@ -46,6 +46,10 @@ export const sidebarZh: SidebarConfig = {
               link: '/zh/blog/docker/index.md',
             },
             {
+              text: '指令',
+              link: '/zh/blog/docker/command.md',
+            },
+            {
               text: '构建一个vue项目',
               link: '/zh/blog/docker/publishVue.md'
             }
