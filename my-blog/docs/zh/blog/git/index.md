@@ -109,6 +109,7 @@
 
   ```javascript
     git branch
+    git branch -r
   ```
 
   ### 创建|切换分支

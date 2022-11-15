@@ -15,3 +15,7 @@
 
   ### whereis
     查看nginx的目录：whereis nginx
+
+
+  ### 移除开机启动项 （如：移除思科）
+  sudo mv /Library/LaunchAgents/com.cisco.anyconnect.gui.plist
