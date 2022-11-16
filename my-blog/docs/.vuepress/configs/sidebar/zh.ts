@@ -50,6 +50,14 @@ export const sidebarZh: SidebarConfig = {
               link: '/zh/blog/docker/command.md',
             },
             {
+              text: '参数说明',
+              link: '/zh/blog/docker/参数说明.md',
+            },
+            {
+              text: 'commitAli',
+              link: '/zh/blog/docker/commitAli.md',
+            },
+            {
               text: '构建一个vue项目',
               link: '/zh/blog/docker/publishVue.md'
             }
@@ -58,6 +66,34 @@ export const sidebarZh: SidebarConfig = {
         {
           text: 'regExp',
           link: '/zh/blog/regExp/常用正则匹配.md',
+        },
+        {
+          text: 'node',
+          collapsible: true,
+          children: [
+            {
+              text: 'node',
+              link: '/zh/blog/node/index.md',
+            },
+            {
+              text: 'nvm',
+              link: '/zh/blog/node/nvm.md',
+            },
+          ]
+        },
+        {
+          text: 'proxy',
+          collapsible: true,
+          children: [
+            {
+              text: 'nohost',
+              link: '/zh/blog/proxy/nohost.md',
+            },
+            {
+              text: 'switchyOmega',
+              link: '/zh/blog/proxy/switchyOmega.md',
+            },
+          ]
         },
         {
           text: 'tool',
