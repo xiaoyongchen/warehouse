@@ -96,6 +96,16 @@ export const sidebarZh: SidebarConfig = {
           ]
         },
         {
+          text: 'terminal',
+          collapsible: true,
+          children: [
+            {
+              text: 'terminal',
+              link: '/zh/blog/terminal/index.md',
+            }
+          ]
+        },
+        {
           text: 'tool',
           collapsible: true,
           children: [
