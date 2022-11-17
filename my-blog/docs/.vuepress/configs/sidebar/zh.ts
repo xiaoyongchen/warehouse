@@ -102,6 +102,10 @@ export const sidebarZh: SidebarConfig = {
             {
               text: 'terminal',
               link: '/zh/blog/terminal/index.md',
+            },
+            {
+              text: 'QA',
+              link: '/zh/blog/terminal/QA.md',
             }
           ]
         },
