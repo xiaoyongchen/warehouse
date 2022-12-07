@@ -125,3 +125,131 @@ https://dev-api.jihext.com/mgt/doc.html#/
 https://finance.gucheng.com/202209/4267884.shtml
 http://jh-intjks.jihint.com/view/fat-jiahui-web/job/fat-jiahui-web-mini-program-mgt/
 http://jira.jihint.com/issues/?filter=10794
+
+
+# password
+
+
+xiaoyong.chen
+#*Jh12345678
+49.232.138.121:8088
+hui
+123456
+
+## 苹果登录
+appleid.apple.com  jiahui.work9527@gmail.com   #*Aa123456
+
+idmsa.apple.com    1538627809@qq.com           Yunda123456
+
+
+## axshare
+
+bp9tsy.axshare.com   ymzx
+
+## docker
+login.docker.com   1538627809@qq.com         Docker123456
+
+## 
+zlz.efesco.com
+21598001261
+98124
+
+## gittee
+gitee.com   CODE_CXY                      giteeCxy123456
+gitee.com    CODE_CXY（CODE_CXY）          giteeCxy123456
+
+## github
+github.com  1538627809@qq.com              #*czcn1004
+
+## 公司
+hrp.shjih.com:8001
+xiaoyong.chen
+#*Jiahui9527
+
+ihr.shjih.com:8088
+Jiahui3820
+
+i18n.jiahui.com
+xiaoyong.chen
+Aa1234567890
+
+## iconfont
+iconfont.cn     17621799159                 
+
+## 邮箱
+mail.jiahui.com    TBPARTNERS\xiaoyong.chen    #*Jh12345678
+mail.jiahui.com     xiaoyong.chen             #*Jh12345678
+privacyidea.jiahui.com   xiaoyong.chen       #*Jh12345678
+
+## host
+proxy-console.jiahui.com  chenxiaoyong      chenxiaoyong
+
+## gitlab
+gitlab.jihint.com       xiaoyong.chen     #*Jh12345678
+
+## jenkins
+jh-intjks.jihint.com    xiaoyong.chen     #*Jh12345678
+jh-jenkins.jihint.com   xiaoyong.chen     #*Jh12345678
+
+## 埋点
+jih-kibana-prod.jihint.com  frontend-server frontend-server123
+## jira
+jira.jihint.com    xiaoyong.chen      #*Jh12345678
+
+## 蓝湖
+lanhuapp.com      xiaoyong.chen@zhangmen.com    #*czcn1004
+
+sso.lanhuapp.com  xiaoyong.chen@zhangmen.com    #*czcn1004
+
+## Microsoft
+login.live.com  xiaoyong.chen@jiahui.com    Jiahui3820
+
+## 正式jenkins
+app.distribution.medcloud.cn  xiaoyong    xiaoyong
+## 泽怡gitlab
+gitlab.medcloud.cn  xy.chen         Cxy123456
+
+## sentry
+sentry.medcloud.cn    xy.chen@medcloud.cn Cxy123456
+
+## wiki
+wiki.medcloud.cn    hao.li            ZY123
+
+login.partner.microsoftonline.cn
+xiaoyong.chen@jiahui.com
+Jiahui3820
+profile.oracle.com
+jiahui.work9527@gmail.com
+Jiahui9527@gmail
+console.oray.com
+b@u52zXA?5^9NDg
+login.oray.com
+
+dingding3820
+DD3820
+qcloud.vip
+hui
+123456
+zh.singlelogin.app
+1538627809@qq.com
+#*123456
+
+## PS
+sketch.com  jiahui.work9527@gmail.com jiahui.work9527
+sketch.com  xiaoyong.chen@zhangmen.com  #*czcn1004
+
+## tapd
+tapd.cn     xiaoyong.chen@jiahui.com    Jiahui3820
+
+
+wwsj9688.xyz
+1538627809@qq.com
+#*123456
+
+
+xbsj9729.website
+3496271763@qq.com
+Gyx1198*
+
+## 印象笔记
+app.yinxiang.com  yinxiongbiji    #*czcn1004
