@@ -1,0 +1,53 @@
+
+@import './var.less';
+
+// flex布局通用样式
+.flex1 {
+  flex: 1
+}
+.row-start-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.row-end-center {
+  .row-start-center;
+  justify-content: flex-end;
+}
+
+.row-center-center {
+  .row-start-center;
+  justify-content: center;
+}
+
+.row-space-center {
+  .row-start-center;
+  justify-content: space-between;
+}
+
+.column-start-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.column-end-start {
+  .column-start-start;
+  justify-content: flex-end;
+}
+
+.column-start-center {
+  .column-start-start;
+  align-items: center;
+}
+
+.column-space-center {
+  .column-start-center;
+  justify-content: space-between;
+}
+
+
+

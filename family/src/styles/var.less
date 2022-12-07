@@ -1,0 +1,77 @@
+/*--------定义全局样式变量------------*/
+/* Colors
+---------------------- */
+@--jh--color-fff: #fff;
+@--jh--color-main: #36444E;
+@--jh--color-disabled: #86949e;
+@--jh--color-placeHolder: #c6cdd2;
+
+
+/* borderRadius
+---------------------- */
+@--jh--border-radius-base: 4px;
+@--jh--border-radius-8: @--jh--border-radius-base * 2;
+@--jh--border-radius-16: @--jh--border-radius-base * 4;
+
+/* fontSize
+---------------------- */
+@--jh-font-size-12: 12px;
+@--jh-font-size-13: @--jh-font-size-12 + 1;
+@--jh-font-size-14: @--jh-font-size-12 + 2;
+@--jh-font-size-15: @--jh-font-size-12 + 3;
+
+/* Mixins
+自定义通用函数
+---------------------- */
+
+.label(@fontSize:12px, @color:'#36444E', @fontWeight: '400'){
+  font-size: @fontSize;
+  color: @color;
+  font-weight: @fontWeight;
+}
+.wh(@width, @height){
+  width: @width;
+  height: @height;
+}
+
+/* Mixins
+自定义通用函数
+---------------------- */
+.boder-bottom-1px(@color:#e6e9ed) {
+  @media (-webkit-device-pixel-ratio: 2) {
+    border-bottom: 1px solid @color;
+  }
+  @media (-webkit-device-pixel-ratio: 3) {
+    border-bottom: 1.23px solid @color;
+  }
+  @media (-webkit-device-pixel-ratio: 2.75) {
+    border-bottom: 1.44px solid @color;
+  }
+}
+
+.height-1px() {
+  @media (-webkit-device-pixel-ratio: 2) {
+    height: 1px;
+    transform: scaleY(0.5);
+  }
+  @media (-webkit-device-pixel-ratio: 3) {
+    height: 1.23px;
+    transform: scaleY(0.5);
+  }
+  @media (-webkit-device-pixel-ratio: 2.75) {
+    height: 1.44px;
+    transform: scaleY(0.5);
+  }
+}
+
+.border-1px(@color:#DDE2E6) {
+  @media (-webkit-device-pixel-ratio: 2) {
+    border: 1px solid @color;
+  }
+  @media (-webkit-device-pixel-ratio: 3) {
+    border: 1.23px solid @color;
+  }
+  @media (-webkit-device-pixel-ratio: 2.75) {
+    border: 1.44px solid @color;
+  }
+}
