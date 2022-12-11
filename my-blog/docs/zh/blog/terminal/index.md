@@ -51,5 +51,11 @@ kill -9 452
 
 history
 
+### 设置代理
 
+```bash
+alias proxy_jh="export https_proxy=http://10.2.3.230:88 http_proxy=http://10.2.3.230:88 all_proxy=socks5://10.2.3.230:88
+curl google.com"
+
+```
 
