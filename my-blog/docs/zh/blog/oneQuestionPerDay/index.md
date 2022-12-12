@@ -37,6 +37,8 @@ const result = [
     }
   ]
 ]
+
+// 这里数组引用
 const getArray = (arr = []) => {
   const result = arr.reduce((sum, it ) => {
     const item = arr.filter(i => i.pid === it.id);
@@ -54,4 +56,22 @@ const getArray = (arr = []) => {
 
 getArray(array);
 
+```
+
+## 数组拷贝
+
+```javascript
+  // 数组
+  Array.slice(arr);
+  [...arr];
+  Array.map(it => it);
+  Array.from(arr);
+  Object.assign([], arr);
+  arr.filter(it => it);
+  // set 转 Array
+  [...new Set(array)];
+  // map 转 Array 不过是二维数组
+  [...new Map([[1, 'one'], [2, 'two']])];
+  // lodash 里面的方法
+  // todo...
 ```
