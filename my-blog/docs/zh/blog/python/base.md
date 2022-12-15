@@ -40,46 +40,45 @@
   # 这是一条注释
 
 ## 列表
-  ### 操作
+
+  animal = ['dog', 'fish', 'pig']
+  animal[0]
+
+  // 列表最后一个元素
+  animal[-1]
+
+  * append添加
+  * pop(position) 移除最后一个 不指定position表示最后一个，0表示第一个，得到相应弹出元素。
+  * del animal[0] 删除元素 使用del操作符
+  * remove('dog') 制定删除的元素
+  * clear 清除所有
+  * insert(potison, element) 指定位置插入, potison 作为插入的下标 -0 ｜ 0一样的， -1表示倒数第二
+
+  `操作`
+
+  * sort 永久性排序
+  * sorted(animal) 临时排序，不改变原函数
+  * reverse 反转
+  * len 操作符确定长度
+
+  `遍历列表 注意冒号，以及换行的缩进，通过缩进来判断单前行与上一行的关系`
+  ```bash
     animal = ['dog', 'fish', 'pig']
+    for element in animal:
+      print(element)
+  ```
+  `创建数值列表`
 
-    animal[0]
+  * for value in range(1,6): 使用range函数
+    print(value)
+  * 创建使用list函数list(range(1,6))
+  * list(range(1,11, 2)) 指定步长
 
-    // 列表最后一个元素
-    animal[-1]
-
-    * append添加
-    * pop(position) 移除最后一个 不指定position表示最后一个，0表示第一个，得到相应弹出元素。
-    * del animal[0] 删除元素 使用del操作符
-    * remove('dog') 制定删除的元素
-    * clear 清除所有
-    * insert(potison, element) 指定位置插入, potison 作为插入的下标 -0 ｜ 0一样的， -1表示倒数第二
-
-  ### 组织列表
-
-    * sort 永久性排序
-    * sorted(animal) 临时排序，不改变原函数
-    * reverse 反转
-    * len 操作符确定长度
-
-  ### 遍历列表 注意冒号，以及换行的缩进，通过缩进来判断单前行与上一行的关系
-    ```bash
-      animal = ['dog', 'fish', 'pig']
-      for element in animal:
-        print(element)
-    ```
-  ### 创建数值列表
-
-    * for value in range(1,6): 使用range函数
-      print(value)
-    * 创建使用list函数list(range(1,6))
-    * list(range(1,11, 2)) 指定步长
-
-  ### 列表切片类似ES6的语法解构
-    * num = [1,2,3,4,5,6,7,8] num[0:3] => [1,2,3]
-    * num = [1,2,3,4,5,6,7,8] num[:3] => [1,2,3]  
-    * num = [1,2,3,4,5,6,7,8] num[1:3] => [2,3]
-    * num = [1,2,3,4,5,6,7,8] num[1:] => [2,3,4,5,6,7,8]
+  `列表切片类似ES6的语法解构`
+  * num = [1,2,3,4,5,6,7,8] num[0:3] => [1,2,3]
+  * num = [1,2,3,4,5,6,7,8] num[:3] => [1,2,3]  
+  * num = [1,2,3,4,5,6,7,8] num[1:3] => [2,3]
+  * num = [1,2,3,4,5,6,7,8] num[1:] => [2,3,4,5,6,7,8]
 
 
   ## 元组 使用括号包含
@@ -153,10 +152,10 @@
 
 ## 模块
 
-  ### 命名
-    * from 模块名 import 变量名
-    * form 模块名 import 变量名 as 别名 或者这样 => form 模块名 as 别名
-    * form 模块名 import * 导入所有的函数等变量
+  `命名`
+  * from 模块名 import 变量名
+  * form 模块名 import 变量名 as 别名 或者这样 => form 模块名 as 别名
+  * form 模块名 import * 导入所有的函数等变量
 
 ## 类
 
@@ -184,7 +183,7 @@
 
 ## 文件处理
 
-### 读文件操作
+`读文件操作`
 
   ```bash
 
@@ -198,7 +197,7 @@
       print(content.strip()) 
     # readlines读取每个行，得到一个列表， readline读取第一行
   ```
-### 写操作
+`写操作`
 
 ```bash
   # w表示文件的写权限
@@ -254,7 +253,7 @@ unittest.main()
 
 ## 游戏
 
-  ### 安装Pygame
+  `安装Pygame`
     # 书上安装报错
     * brew install hg sdl sdl_image sdl_ttf 
       * 如果遇到权限问题执行下面两个操作（error：You should change the ownership of these directories to your user. 2.And make sure that your user has write permission.）
@@ -266,7 +265,7 @@ unittest.main()
 
     * 直接使用pips install pygame
 
-  ### 简单设置窗口
+  `简单设置窗口`
   ```bash
     import sys
     import pygame
@@ -289,63 +288,61 @@ unittest.main()
     run_game()
   ```
 
-  ### 
-
-
   ## matplotlib制作表格
-    ### 安装
-      * pip3 install --user matplotlib
-      * 查看 python3 
-        * >>> import matplotlib
-      * 示例画廊(http://matplotlib.org/)。
+  `安装`
+  * pip3 install --user matplotlib
+  * 查看 python3 
+    * import matplotlib
+  * 示例画廊(http://matplotlib.org/)。
 
   ## pygal制作可缩放的矢量图形文件
-    ### 安装
-      * mac
-        * pip3 install --user pygal
-      * window
-        * python -m pip install --user pygal
-      * 查看 python3 
-        * >>> import pygal
+
+  * mac
+    * pip3 install --user pygal
+  * window
+    * python -m pip install --user pygal
+  * 查看 python3 
+    * import pygal
 
   ## 使用api python3一般默认安装了
 
-    ### 安装
-      *  pip3 install --user requests
+  `安装`
+  *  pip3 install --user requests
 
-    ```bash
-      import requests
-      url = 'https://api.github.com/search/repositories?q=language:python&sort=stars&page=1&size=1'
-      res = requests.get(url)
-      resJson = res.json()
-      print(resJson['items'][0])
-    ```
+  ```bash
+    import requests
+    url = 'https://api.github.com/search/repositories?q=language:python&sort=stars&page=1&size=1'
+    res = requests.get(url)
+    resJson = res.json()
+    print(resJson['items'][0])
+  ```
 
-    ## [爬虫]（https://foofish.net/python-crawler-html2pdf.html）
-      ### 工具下载
-        ```bash
-          # pip3 也行
-          pip install requests
-          pip install beautifulsoup4
-          pip install pdfkit
-        ```
-      ### 安装 wkhtmltopdf(https://wkhtmltopdf.org/downloads.html  )
-         Windows平台直接在 wkhtmltopdf 官网下载稳定版的进行安装，安装完成之后把该程序的执行路径加入到系统环境 $PATH 变量中，否则 pdfkit 找不到 wkhtmltopdf 就出现错误 “No wkhtmltopdf executable found”。Ubuntu 和 CentOS 可以直接用命令行进行安装
+  [爬虫]（https://foofish.net/python-crawler-html2pdf.html）
+  `工具下载`
+  ```bash
+    # pip3 也行
+    pip install requests
+    pip install beautifulsoup4
+    pip install pdfkit
+  ```
+   安装 wkhtmltopdf(https://wkhtmltopdf.org/downloads.html  )
+   Windows平台直接在 wkhtmltopdf 官网下载稳定版的进行安装，安装完成之后把该程序的执行路径加入到系统环境 $PATH 变量中，否则 pdfkit 找不到 wkhtmltopdf 就出现错误 “No wkhtmltopdf executable found”。Ubuntu 和 CentOS 可以直接用命令行进行安装
 
-         $ sudo apt-get install wkhtmltopdf  # ubuntu
-         $ sudo yum intsall wkhtmltopdf      # centos
+   $ sudo apt-get install wkhtmltopdf  # ubuntu
+   $ sudo yum intsall wkhtmltopdf      # centos
 
-        [macos](https://wkhtmltopdf.org/downloads.html)
-        下载安装就行
-        ```bash
-          # 查看版本
-          wkhtmltopdf --version
-        ```
+  [macos](https://wkhtmltopdf.org/downloads.html)
+  下载安装就行
+  ```bash
+    # 查看版本
+    wkhtmltopdf --version
+  ```
 
-    ### 生成依赖
-      ```bash
-        # freeze命令用于生成将当前项目的pip类库列表生成 requirements.txt 文件：
-        pip freeze > requirements.txt
-        # 安装依赖
-        pip install -r requirements.txt
-      ```
+  ## 生成依赖
+
+   ```bash
+     # freeze命令用于生成将当前项目的pip类库列表生成 requirements.txt 文件：
+     pip freeze > requirements.txt
+     # 安装依赖
+     pip install -r requirements.txt
+   ```
