@@ -442,4 +442,56 @@ export default validatorUtil;
 ## 移动端屏幕适配
 
 
-## 
+## 隐私协议替换文案
+
+```javascript
+const result = "我已阅读并同意 %{var}, %{var2} 隐私协议1和隐私协议2".replace(/(?=\%{).+?(?<=\})/g, (key, start, string) => {
+    return '$' + key + '$';
+});
+console.log(result);
+
+let array = result.split("$").filter(it => it.length > 0);
+console.log(array);
+
+
+array = array.map(it => {
+	const item = {};
+	item.value = it;
+	item.color = 'gray';
+	item.link = "";
+	if(it === "%{var}") {
+		item.link = "http://baidu.com";
+		item.color = "red";
+		item.value = "隐私协议1";
+	}
+	if( it === "%{var2}") {
+		item.link = "http://google.com";
+		item.color = "red";
+		item.value = "隐私协议2";
+	}
+	return item;
+});
+console.log(array);
+
+```
+
+## 字符串出现的次数
+
+```typescript
+  const getRepeatNum = (str = '') => {
+    if (!str) {
+      return {};
+    }
+    const strOrNumber = typeof str === 'number' || typeof str === 'string';
+    if (!strOrNumber) {
+      return {};
+    }
+    const strValue = typeof str === 'number' ? str + '' : str;
+    const map = {};
+    strValue.split('').forEatch(it => {
+      // 0, false, null, undefined  -~0 为1、 -～1 为 2
+      map[it] = -~map[it];
+    })
+    return map;
+  }
+```
