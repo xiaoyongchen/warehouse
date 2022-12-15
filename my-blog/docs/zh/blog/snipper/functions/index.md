@@ -160,3 +160,286 @@
     return dateArr;
   }
 ```
+
+## 金额保留2位小数
+
+```javascript
+
+ /**
+   *
+   * @param num
+   * @param round 是否四舍五入。
+   * @param placeholder
+   */
+  const getTwoDecimalPlaces = (num: any, round = false, placeholder = "0.00"): string | number => {
+    if (num === 0) {
+      return placeholder;
+    }
+    // 过滤掉NaN, null, undefiled
+    if (!num) {
+      return placeholder;
+    }
+    // 过滤数组，对象等数据
+    const strOrNum = typeof num === "number" || typeof num === "string";
+    if (!strOrNum) {
+      return placeholder;
+    }
+    // 判断是否有小数点。
+    const numValue = typeof num === "string" ? parseFloat(num) : num;
+    const result = Math.floor(numValue * 100) / 100;
+    const resultRound = Math.round(numValue * 100) / 100;
+    const returnResult = (e: number) => {
+      const [first, second = ""] = (e + "").split(".");
+      if (!second.length) {
+        return first + ".00";
+      }
+      if (second.length === 1) {
+        return e + "0";
+      }
+      return e;
+    };
+    if (round) {
+      return returnResult(resultRound);
+    }
+    return returnResult(result);
+  };
+```
+
+## 移动端textarea自动撑开
+```typescript
+ // 使用 resizeTextarea(inputRef.value);
+  export type ScrollElement = Element | Window;
+
+  export function resizeTextarea(input: HTMLInputElement) {
+    const scrollTop = getRootScrollTop();
+    input.style.height = 'auto';
+
+    const height = input.scrollHeight;
+    if (height) {
+      input.style.height = `${height}px`;
+      // https://github.com/youzan/vant/issues/9178
+      setRootScrollTop(scrollTop);
+    }
+  }
+
+  export function setScrollTop(el: ScrollElement, value: number) {
+    if ('scrollTop' in el) {
+      el.scrollTop = value;
+    } else {
+      el.scrollTo(el.scrollX, value);
+    }
+  }
+
+  export function getRootScrollTop(): number {
+    return (
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0
+    );
+  }
+
+  export function setRootScrollTop(value: number) {
+    setScrollTop(window, value);
+    setScrollTop(document.body, value);
+  }
+
+```
+
+## 脱敏处理
+
+```typescript
+/**
+ * @param val 手机号
+ * @returns 得到脱敏的手机号
+ * @position 脱敏的位置,默认脱敏中间位置 start | center | end
+ */
+type Position = 'start' | 'center' | 'end';
+export function desensitizationWithMobile(val: string, position: Position = 'center') {
+  if (typeof val !== 'string' || !val) {
+    return '';
+  }
+  // 判断length
+  if (position === 'start' && val.length > 5 && val.length < 11) {
+    const patter = /^\S*(\S{5})/;
+    const len = val.length - 5;
+    const replaceString = '*'.repeat(len);
+    return val.replace(patter, `${replaceString}$1`);
+  }
+  if (position === 'start' && val.length >= 11) {
+    const patter = /^\S*(\S{7})/;
+    const len = val.length - 7;
+    const replaceString = '*'.repeat(len);
+    return val.replace(patter, `${replaceString}$1`);
+  }
+  // 判断length
+  if (position === 'center' && val.length > 5 && val.length < 11) {
+    const patter = /(^\S{2})\S*(\S{3})/;
+    const len = val.length - 5;
+    const replaceString = '*'.repeat(len);
+    return val.replace(patter, `$1${replaceString}$2`);
+  }
+  if (position === 'center' && val.length >= 11) {
+    const patter = /(^\S{3})\S*(\S{4})/;
+    const len = val.length - 7;
+    const replaceString = '*'.repeat(len);
+    return val.replace(patter, `$1${replaceString}$2`);
+  }
+
+  // 判断length
+  if (position === 'end' && val.length > 5 && val.length < 11) {
+    const patter = /(^\S{5})\S*/;
+    const len = val.length - 5;
+    const replaceString = '*'.repeat(len);
+    return val.replace(patter, `$1${replaceString}`);
+  }
+  if (position === 'end' && val.length >= 11) {
+    const patter = /(^\S{7})\S*/;
+    const len = val.length - 7;
+    const replaceString = '*'.repeat(len);
+    return val.replace(patter, `$1${replaceString}`);
+  }
+  return val;
+}
+```
+
+## web复制文本
+
+```typescript
+export const copyTextToClipboard = async (text?: string | null): Promise<void> => {
+  try {
+    const clipboard = navigator.clipboard
+    if (text && clipboard) {
+      await clipboard.writeText(text)
+      return Promise.resolve()
+    }
+    return Promise.reject()
+  } catch (error) {
+    return Promise.reject()
+  }
+}
+```
+
+## vue3 全局eventBus
+```typescript
+  import mitt from "mitt";
+
+  const bus: any = {}
+  const emitter = mitt()
+
+  bus.$on = emitter.on
+  bus.$off = emitter.off
+  bus.$emit = emitter.emit
+
+  export default bus
+```
+
+## 阅读量转换
+```javascript
+  const changeUnitWithClickCount = (number = 0) => {
+      if (!number) {
+        return 0;
+      }
+      if (typeof number !== 'number') {
+        return number;
+      }
+
+      if (number < 10000) {
+        return number;
+      }
+
+      let count = number / 10000.0;
+      return parseFloat(count.toFixed(2)) + 'w';
+    }
+  }
+```
+
+## 拼接url
+```javascript
+const urlByAppendingParams = (url = '', params) => {
+  let result = url;
+
+  if (!params || !Object.entries(params)?.length) {
+    return result;
+  }
+
+  result = result?.endsWith('?') ? result : result + '?';
+
+  return (
+    result +
+    Object.entries(params).reduce((pre, current, index, array) => {
+      const [key, value] = current;
+      let str = '';
+      if (typeof value === 'object') {
+        str = `${key}=${JSON.stringify(value)}`;
+      } else {
+        str = `${key}=${value}`;
+      }
+      if (index === array.length - 1) {
+        return pre + str;
+      } else {
+        return pre + str + '&';
+      }
+    }, '')
+  );
+}
+```
+
+## 规则校验
+
+```typescript
+export type RuleType =
+  | 'date'
+  | 'url'
+  | 'hex'
+  | 'email'
+  | 'mobile'
+  | 'idCard'
+  | 'address'
+  | 'exceptionsCode'
+  | 'any';
+// 校验规则
+export const JHPattern = {
+  email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  url: new RegExp("^(?!mailto:)(?:(?:http|https|ftp)://|//)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$", 'i'),
+  hex: /^#?([a-f0-9]{6}|[a-f0-9]{3})$/i,
+  mobile: /^(1)\d{10}$/,
+  idCard: /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/,
+  exceptionsCode: /[`~!@#\$%\^\&\*\(\)_\+<>\?:"\{\},\.\\\/;'\[\]]$/,
+};
+
+const Rules: { [key: string]: (value: any) => boolean } = {
+  date: (value: Date) => typeof value.getTime === 'function' && typeof value.getMonth === 'function' && typeof value.getFullYear === 'function' && !isNaN(value.getTime()),
+  hex: (value: string) => typeof value === 'string' && !!value.match(JHPattern.hex),
+  url: (value: string) => typeof value === 'string' && !!value.match(JHPattern.url),
+  mobile: (value: string) => typeof value === 'string' && !!value.match(JHPattern.mobile),
+  email: (value: string) => typeof value === 'string' && !!value.match(JHPattern.email) && value.length < 255,
+  idCard: (value: string) => typeof value === 'string' && !!value.match(JHPattern.idCard),
+  address: (value: string) => typeof value === 'string' && value.length > 0,
+  exceptionsCode: (value: string) => typeof value === 'string' && !!value.match(JHPattern.exceptionsCode),
+};
+
+/**
+ * 通用校验规则
+ * @param type 校验类型
+ * @param value 校验的数据
+ * @returns 是否校验通过
+ */
+const validatorUtil = {
+  checkMobile: (value: string) => Rules.mobile(value),
+  checkEmail: (value: string) => Rules.email(value),
+  checkUrl: (value: string) => Rules.url(value),
+  checkDate: (value: Date) => Rules.date(value),
+  checkIdCard: (value: string) => Rules.idCard(value),
+  checkHex: (value: string) => Rules.hex(value),
+  checkAddress: (value: string) => Rules.address(value),
+  checkExceptionsCode: (value: string) => Rules.exceptionsCode(value),
+};
+
+export default validatorUtil;
+```
+
+## 移动端屏幕适配
+
+
+## 
