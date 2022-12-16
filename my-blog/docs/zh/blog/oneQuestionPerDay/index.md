@@ -155,9 +155,42 @@ console.log(res);
   }
 ```
 
-## falt实现
+## flat实现
+你可以使用递归的方式来实现 flat() 方法。下面是一个实现例子：
 
 ```typescript
+  function(arr) {
+    let result = [];
+    for(let i = 0; i < arr.length; i++) {
+      if (Array.isArray(arr[i])) {
+        result = result.concat(flat(arr[i]))
+      } else {
+        result.push(arr[i])
+      }
+    }
+    return result;
+  }
+```
+
+你也可以使用非递归的方式来实现 flat() 方法。下面是另一个例子：
+
+```typescript
+
+  // 方案1
+  function(arr) {
+    let stack = [...arr];
+    let result = [];
+    while(stack.length) {
+      let current = stack.pop();
+      if (Array.isArray(item)) {
+        result.push(...current);
+      } else {
+        result.push(item);
+      }
+    }
+    return result.reverse();
+  }
+  // 方案2
   const array = [1, [2, [3, 4]],[[[1,2]]]];
   const flatList = (arr = []) {
     while(arr.some(it => Array.isArray(it))) {
@@ -165,4 +198,63 @@ console.log(res);
     }
     return arr;
   }
+```
+
+
+## 微信红包算法。
+
+* 最小金额0.01
+* 最大金额200, 个数大于1，最大金额就是一半。
+* 平均金额大于0.01
+
+```javascript
+  function getWechatRedPacket(totalMoney, totalPeople, random = true) {
+  if (!totalMoney) {
+    throw new Error("请填写金额");
+  }
+  if (!totalPeople) {
+    throw new Error("请填写人数");
+  }
+  if (totalMoney > 200) {
+    throw new Error("红包金额不能超过200");
+  }
+  if (totalMoney < 0.01) {
+    throw new Error("红包金额不能小于0.01");
+  }
+  if (totalPeople * 0.01 > totalMoney) {
+    throw new Error("单个红包金额不能小于0.01");
+  }
+  if (totalPeople === 1) {
+    return [totalMoney];
+  }
+
+  // 平均。
+  if (!random) {
+    const currentMoney = totalMoney / totalPeople;
+    return Array.from({ length: totalPeople }).map(() => Math.round(currentMoney * 100) / 100);
+  }
+
+  const minMoney = 0.01;
+  let maxMoney;
+  let currentMoney;
+  let result = [];
+  while (totalPeople > 1) {
+    maxMoney = totalMoney / 2.0;
+    currentMoney = Math.random() * totalMoney;
+    currentMoney = currentMoney < minMoney ? 0.01 : currentMoney > maxMoney ? maxMoney : currentMoney;
+    // maxMoney = totalMoney * 2.0 / totalPeople;
+    // currentMoney = Math.random() * maxMoney;
+    // currentMoney = currentMoney < minMoney ? 0.01 : currentMoney
+    currentMoney = Math.round(currentMoney * 100) / 100;
+    totalMoney -= currentMoney;
+    totalPeople--;
+    result.push(currentMoney);
+  }
+
+  result.push(Math.round(totalMoney * 100) / 100);
+  return result;
+}
+
+// getWechatRedPacket(0.01, 2);
+
 ```
