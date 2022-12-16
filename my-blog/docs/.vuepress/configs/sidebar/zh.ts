@@ -70,6 +70,13 @@ export const sidebarZh: SidebarConfig = {
           ]
         },
         {
+          text: 'chatGPT',
+          collapsible: true,
+          children: [
+            '/zh/blog/chatGPT/index.md',
+          ]
+        },
+        {
           text: 'css',
           collapsible: true,
           children: [
