@@ -6,3 +6,8 @@ jiahui.work9527@gmail.com jiahui.work9527
 ## sms账号
 https://sms-activate.org/cn/feedbackTest
 jiahui.work9527@gmail.com Jiahui.work9527
+
+
+## https://discord.com/channels/@me
+jiahui.work9527@gmail.com jiahui.work9527
+
