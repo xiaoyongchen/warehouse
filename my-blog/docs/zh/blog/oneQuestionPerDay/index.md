@@ -258,3 +258,48 @@ console.log(res);
 // getWechatRedPacket(0.01, 2);
 
 ```
+
+## 防抖和截流
+
+```javascript
+
+// 防抖
+function debounce (func, wait) {
+  let timer = null;
+  return (...args) => {
+    // 下个请求在时间段内，直接return
+    if (timer) {
+      clearTimerout(timer);
+      timer = null;
+      return;
+    }
+    timer = setTimeout(() => {
+      func.apply(this, args);
+      clearTimerout(timer);
+      timer = null;
+    }, wait);
+  }
+}
+
+// 节流
+function throttle(func, wait) {
+  let lastTime = null;
+  return (...args) => {
+    if (!lastTime) {
+      func.apply(this, args);
+      lastTime = Date.new();
+      return;
+    }
+    const newTime = Date.new();
+    if (newTime - lastTime >= wait) {
+      func.apply(this, args);
+      lastTime = Date.new();
+    }
+  }
+}
+
+```
+:::tip
+防抖：在时间段内，只执行一次。
+节流：n秒后执行，如果在n秒被重复触发，则重新计时
+:::
