@@ -61,3 +61,53 @@
     }
     # index ok
   ```
+
+
+  ## eval Function区别
+
+  ```javascript
+    var a = 'global scope'
+    function b(){
+         var a = 'local scope'
+         eval('console.log(a)') //local scope
+         ;(new Function('','console.log(a)'))() //global scope
+    }
+    b()
+  ```
+:::tip
+都可以动态解析和执行字符串。但是它们对解析内容的运行环境判定不同。
+eval中的代码执行时的作用域为当前作用域。它可以访问到函数中的局部变量。
+new Function中的代码执行时的作用域为全局作用域，不论它的在哪个地方调用的。所以它访问的是全局变量a。它根本无法访问b函数内的局部变量。
+:::
+
+## if else block块中不要使用函数声明
+
+```javascript
+// 千万别这样做！
+// 因为有的浏览器会返回first的这个function，而有的浏览器返回的却是第二个
+
+if (true) {
+  function foo() {
+    return 'first';
+  }
+} else {
+  function foo() {
+    return 'second';
+  }
+}
+foo();
+
+// 解决方式使用函数表达式来解决
+
+let foo = null;
+if (true) {
+  foo = function foo() {
+    return 'first';
+  }
+} else {
+  foo = function foo() {
+    return 'second';
+  }
+}
+foo();
+```
