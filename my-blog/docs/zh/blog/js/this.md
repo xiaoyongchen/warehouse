@@ -255,3 +255,129 @@ this
     :::tip
     例2: 可以看作赋值到一个全局的函数，直接调用全局的函数时，this === global
     :::
+
+
+    **引用类型**
+
+    标识符是变量名、函数名、函数参数名、和全局对象中未识别的属性名
+    * 当我们处理一个标识符
+    * 或者一个属性访问器
+  
+    ```js
+
+    //例子1
+    // 标识符：全局变量名、函数名
+    var foo = 10;
+    function bar() {}
+
+    // 应用类型对应的值如下
+    var fooReference = {
+      base: global,
+      propertyName: 'foo'
+    };
+
+    var barReference = {
+      base: global,
+      propertyName: 'bar'
+    };
+
+    // 标识符：属性访问器。
+    var foo = {
+      bar: function () {
+        return this;
+      }
+    };
+
+    foo.bar(); // foo
+    var fooBarReference = {
+      base: foo,
+      propertyName: 'bar'
+    };
+
+    // 例2
+    // 我们使用另外一种激活相同的函数，生成的引用类型为global。
+    var test = foo.bar;
+    test(); // global
+
+    var testReference = {
+      base: global,
+      propertyName: 'test'
+    };
+
+    // 例3
+    // 非引用类型[立即执行函数]。这个值自动设置null => global
+    (function () {
+      alert(this); // null => global
+    })();
+
+    // 非引用类型[函数表达式]。
+    var foo = {
+      bar: function () {
+        alert(this);
+      }
+    };
+
+    foo.bar(); // Reference, OK => foo
+    (foo.bar)(); // Reference, OK => foo
+     
+    // 这些得到都是函数对象。类似(() => {})()
+    (foo.bar = foo.bar)(); // global?
+    (false || foo.bar)(); // global?
+    (foo.bar, foo.bar)(); // global?
+
+    // 第一个例子很明显———明显的引用类型，结果是，this为base对象，即foo。
+    // 第二个例子中，组运算符并不适用，想想上面提到的，从引用类型中获得一个对象真正的值的方法，如GetValue。相应的，在组运算的返回中———我们得到仍是一个引用类型。这就是this值为什么再次设为base对象，即foo。
+    // 三个例子中，与组运算符不同，赋值运算符调用了GetValue方法。返回的结果是函数对象（但不是引用类型），这意味着this设为null，结果是global对象。
+    // 第四个和第五个也是一样——逗号运算符和逻辑运算符（OR）调用了GetValue 方法，相应地，我们失去了引用而得到了函数。并再次设为global。
+
+    // 例4 
+    // with
+
+    // With语句添加到该对象作用域的最前端，即在活动对象的前面。相应地，也就有了引用类型（通过标示符或属性访问器）， 其base对象不再是活动对象，而是with语句的对象。
+    var x = 10;
+
+    with ({
+
+      foo: function () {
+        alert(this.x);
+      },
+      x: 20
+
+    }) {
+
+      foo(); // 20
+     
+    }
+
+    // because
+     
+    var  fooReference = {
+      base: __withObject,
+      propertyName: 'foo'
+    };
+
+    // 例5 
+    // catch
+
+    try {
+  throw function () {
+    alert(this);
+  };
+  } catch (e) {
+    e(); // ES3标准里是__catchObject, ES5标准里是global 
+  }
+
+  // on idea
+   
+  var eReference = {
+    base: __catchObject,
+    propertyName: 'e'
+  };
+
+  // ES5新标准里已经fix了这个bug，
+  // 所以this就是全局对象了
+  var eReference = {
+    base: global,
+    propertyName: 'e'
+  };
+    ```
