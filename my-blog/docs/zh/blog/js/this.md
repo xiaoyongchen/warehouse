@@ -360,12 +360,12 @@ this
     // catch
 
     try {
-  throw function () {
-    alert(this);
-  };
-  } catch (e) {
-    e(); // ES3标准里是__catchObject, ES5标准里是global 
-  }
+      throw function () {
+        alert(this);
+      };
+    } catch (e) {
+      e(); // ES3标准里是__catchObject, ES5标准里是global 
+    }
 
   // on idea
    
