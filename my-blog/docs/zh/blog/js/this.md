@@ -380,4 +380,49 @@ this
     base: global,
     propertyName: 'e'
   };
+
+  // 例6 
+  // 箭头函数，this永远指向外部的this，等同于.bind
+  const object = {
+    message: 'Hello, World!',
+
+    logMessage() {
+      console.log(this.message); // => ?
+    }
+  };
+
+  setTimeout(object.logMessage, 1000);
+
+
+  // 箭头函数没有arguments 绑定
+  var fun = (arg1,arg2) => {
+    console.log(arguments);//arguments is not defined
+    return arg1 + arg2
+  };
+  console.log(fun(1,5));  //6  
+
+
+  var length = 4;
+  function callback() {
+    console.log(this.length); // 输出什么
+  }
+
+  const object = {
+    length: 5,
+    method() {
+      arguments[0]();
+    }
+  };
+
+  object.method(callback, 1, 2);
+
+  // 因为
+  {
+    0: callback,
+    1: 1, 
+    2: 2, 
+    length: 3 
+  }
+
+
     ```
