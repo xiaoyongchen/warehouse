@@ -7,6 +7,13 @@
     pwd
     # /Users/老王/testDir
     git init
+
+    // 或者
+    git init --initial-branch=master
+    git remote add origin 地址
+    git add .
+    git commit -m "Initial commit"
+    git push -u origin master
   ```
 
   ### 提交代码
@@ -161,12 +168,22 @@
   ```javascript
     git checkout main
     git merge feature/development
+    // 远程还没有
+    git push --set-upstream origin 目标分支
+    // 远程有了
+    git push
+
   ```
 
   ### git cherry-pick
 
   ```javascript
-   git cherry-pick <commitHash>
+  // 拉取分支
+  git checkout development
+  // 拿到其他分支的提交hash值
+  git log
+  // 
+  git cherry-pick <commitHash>
   ```
 
   :::tip
@@ -176,3 +193,4 @@
 
   共同点：都需要在当前分支进行
   :::
+
