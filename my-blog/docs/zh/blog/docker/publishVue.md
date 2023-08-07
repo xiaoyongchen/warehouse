@@ -37,6 +37,8 @@
   # 生成容器，这里用ip访问nginx的时候，就已经替换成宿主的dist下面的index.html，这里有个弊端，每次修改配置都要到容器中修改
   docker run -d -p 80:80 --name nginx_wms_ui -v /Users/chenxiaoyong/Desktop/资料/nginx/dist:/usr/share/nginx/html --restart=always nginx
 
+  docker run -d -p 80:80 --name nginx_wms_ui -v /Users/admin/Desktop/dockerConfig/nginx/dist:/usr/share/nginx/html --restart=always nginx
+
 
   -d=true|false
     后台运行使用 daemon 模式, 默认值false
@@ -122,3 +124,4 @@
   -v：冒号前面的是宿主机的文件目录，冒号后面是容器的内部文件目录
   -d:表示后端运行
   nginx：最后面的nginx是镜像的名称
+  

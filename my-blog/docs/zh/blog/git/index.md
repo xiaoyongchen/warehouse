@@ -96,15 +96,15 @@
 
   ```javascript
     git remote add origin 分支链接
-
+    git remote set-url origin 分支连接
   ```
   ### 删除分支
 
   ```javascript
   // 删除本地分支
-  git branch -d feature/1.0.0
+  git branch -D dev
   // 删除远程分支
-  git push origin  -d feature/1.0.0 <=>  git push origin :feature/1.0.0
+  git push origin  -d dev <=>  git push origin :feature/1.0.0
 
   ```
 
@@ -193,4 +193,13 @@
 
   共同点：都需要在当前分支进行
   :::
+
+  ### 设置tag
+
+  ```
+  git tag -a v1.0.0 -m "初始化项目"
+  git tag // 查看当前分支的tag
+  git tag -l "v1.0.0" // 查看某一个分支
+  ```
+
 

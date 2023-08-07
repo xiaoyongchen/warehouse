@@ -19,3 +19,12 @@
 * 数据大小 file://{res.json} > resBody{res.json} > resMerge{res.json} file包含请求头部分(包含token等信息)，resBody结果对象， resMerge可以是结果部分对象
 * 前端请求最好使用后2个，要不然会跨域。
 * 移动端3个都可以用，不会导致跨域。
+
+
+## 安装插件
+安装之后就可以使用Console.log 等插件
+```bash
+  npm i -g whistle.inspect
+```
+
+https://fanguyun214.github.io/post/qian-duan-kua-ping-tai-diao-shi/
